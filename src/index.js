@@ -2,8 +2,9 @@ import css from "./style.css"
 import {createHeader, createSidebar} from "./DOM"
 import { add } from "date-fns"
 
-createHeader()
 createSidebar()
+createHeader()
+
 
 let projects = {
     list: {},

@@ -24,6 +24,12 @@ const createSidebar = function() {
 
     sidebarOuter.append(sideBarInner)
     contentContainer.append(sidebarOuter)
+
+    const addProjectBtn  = document.createElement('button')
+    addProjectBtn.classList.add('btn')
+    addProjectBtn.textContent = 'New Project'
+    
+    sideBarInner.append(addProjectBtn)
 }
 
 export {createHeader, createSidebar}
