@@ -14,6 +14,9 @@ let projects = {
         } else {
             alert('Project already exists!')
         }
+    },
+    delete: function(projectName) {
+        delete project.list[projectName]
     }
 }
 
