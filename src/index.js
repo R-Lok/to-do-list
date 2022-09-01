@@ -9,7 +9,11 @@ createHeader()
 let projects = {
     list: {},
     add: function(projectName) {
-        projects.list[projectName] = new project(projectName)
+        if (projects.list[projectName] === false) {
+            projects.list[projectName]= new project(projectName)
+        } else {
+            alert('Project already exists!')
+        }
     }
 }
 
@@ -32,11 +36,3 @@ class toDoItem {
         this.dueDate = dueDate
     }
 }
-
-projects.add('hi')
-projects.list.hi.addToDoItem('buy food', 'go shop at walmart', 'Nov 16')
-console.log(projects.list.hi.toDoItems)
-
-console.log(projects)
-
-console.log('test')
