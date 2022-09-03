@@ -51,3 +51,35 @@
 button:hover {
     cursor: pointer;
 }
+
+.form-container-outer {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.66);
+    display: none;
+}
+
+.form-container-inner {
+    border: 2px solid black;
+    width: 30vw;
+    padding: 20px;
+}
+
+form {
+    display: grid;
+    grid-template: auto / 100%;
+    row-gap: 10px;
+}
+
+.form-button {
+    width: 45%;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,9 +1,10 @@
 import css from "./style.css"
-import {createHeader, createSidebar} from "./DOM"
+import {createHeader, createSidebar, newProjectForm} from "./DOM"
 import { add } from "date-fns"
 
 createSidebar()
 createHeader()
+newProjectForm()
 
 
 let projects = {

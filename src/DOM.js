@@ -32,5 +32,41 @@ const createSidebar = function() {
     sideBarInner.append(addProjectBtn)
 }
 
-export {createHeader, createSidebar}
+const newProjectForm = function() {
+    const formContainerOuter = document.createElement('div')
+    formContainerOuter.classList.add('form-container-outer')
+    const formContainerInner = document.createElement('div')
+    formContainerInner.classList.add('form-container-inner')
+
+    const projectForm = document.createElement('form')
+    const projectFormLabel = document.createElement('label')
+    projectFormLabel.setAttribute('for', 'projectName')
+    const projectFormInput = document.createElement('input')
+    projectFormInput.type = 'text'
+    projectFormInput.id = 'projectName'
+    projectFormLabel.innerText = 'Project Name'
+
+    const submitButton = document.createElement('button')
+    submitButton.classList.add('form-button', 'project-submit-btn')
+    submitButton.innerText = 'Submit'
+
+    const cancelButton = document.createElement('button')
+    cancelButton.classList.add('form-button', 'project-cancel-btn')
+    cancelButton.innerText = 'Cancel'
+
+    const buttonContainer = document.createElement('div')
+    buttonContainer.classList.add('button-container')
+
+
+    buttonContainer.append(submitButton, cancelButton)
+    projectForm.append(projectFormLabel, projectFormInput, buttonContainer)
+    formContainerOuter.append(formContainerInner)
+    formContainerInner.append(projectForm)
+    contentContainer.append(formContainerOuter)
+
+    
+
+}
+
+export {createHeader, createSidebar, newProjectForm}
 
