@@ -71,7 +71,12 @@ const newProjectForm = (function() {
     }
 
     function hideProjectForm() {
+        clearProjectFormInput()
         formContainerOuter.style.display = 'none'
+    }
+
+    function clearProjectFormInput() {
+        projectFormInput.value = ""
     }
 
     return {showProjectForm, hideProjectForm, cancelButton}
