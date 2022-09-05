@@ -2,9 +2,14 @@ import css from "./style.css"
 import {createHeader, createSidebar, newProjectForm} from "./DOM"
 import { add } from "date-fns"
 
-createSidebar()
-createHeader()
-newProjectForm()
+createSidebar
+createHeader
+newProjectForm
+
+const eventListeners = (function() {
+    createSidebar.addProjectBtn.addEventListener('click', newProjectForm.showProjectForm)
+    newProjectForm.cancelButton.addEventListener('click', newProjectForm.hideProjectForm)
+})()
 
 
 let projects = {

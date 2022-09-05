@@ -1,7 +1,7 @@
 import headerImageFile from './receipt.png'
 let contentContainer = document.querySelector(".content-container")
 
-const createHeader  = function(){
+const createHeader  = (function(){
     const header = document.createElement('div')
     header.classList.add('header')
 
@@ -13,9 +13,9 @@ const createHeader  = function(){
 
     header.append(headerImage, headerText)
     contentContainer.append(header)
-}
+})()
 
-const createSidebar = function() {
+const createSidebar = (function() {
     const sidebarOuter = document.createElement('div')
     sidebarOuter.classList.add('sidebar', 'outer')
 
@@ -30,9 +30,11 @@ const createSidebar = function() {
     addProjectBtn.textContent = 'New Project'
     
     sideBarInner.append(addProjectBtn)
-}
 
-const newProjectForm = function() {
+    return {addProjectBtn}
+})()
+
+const newProjectForm = (function() {
     const formContainerOuter = document.createElement('div')
     formContainerOuter.classList.add('form-container-outer')
     const formContainerInner = document.createElement('div')
@@ -52,11 +54,11 @@ const newProjectForm = function() {
 
     const cancelButton = document.createElement('button')
     cancelButton.classList.add('form-button', 'project-cancel-btn')
+    cancelButton.setAttribute('type', 'button')
     cancelButton.innerText = 'Cancel'
 
     const buttonContainer = document.createElement('div')
     buttonContainer.classList.add('button-container')
-
 
     buttonContainer.append(submitButton, cancelButton)
     projectForm.append(projectFormLabel, projectFormInput, buttonContainer)
@@ -64,9 +66,16 @@ const newProjectForm = function() {
     formContainerInner.append(projectForm)
     contentContainer.append(formContainerOuter)
 
-    
+    function showProjectForm() {
+        formContainerOuter.style.display = 'flex'
+    }
 
-}
+    function hideProjectForm() {
+        formContainerOuter.style.display = 'none'
+    }
+
+    return {showProjectForm, hideProjectForm, cancelButton}
+})()
 
 export {createHeader, createSidebar, newProjectForm}
 
