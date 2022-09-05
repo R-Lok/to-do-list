@@ -50,6 +50,7 @@ const newProjectForm = (function() {
 
     const submitButton = document.createElement('button')
     submitButton.classList.add('form-button', 'project-submit-btn')
+    submitButton.setAttribute('type', 'button')
     submitButton.innerText = 'Submit'
 
     const cancelButton = document.createElement('button')
@@ -79,7 +80,11 @@ const newProjectForm = (function() {
         projectFormInput.value = ""
     }
 
-    return {showProjectForm, hideProjectForm, cancelButton}
+    function getProjectFormInputValue() {
+        return projectFormInput.value
+    }
+
+    return {showProjectForm, hideProjectForm, cancelButton, submitButton, getProjectFormInputValue}
 })()
 
 export {createHeader, createSidebar, newProjectForm}
