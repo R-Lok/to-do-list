@@ -82,3 +82,24 @@ form {
     display: flex;
     justify-content: space-between;
 }
+
+.sidebar-project-container {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    border-radius: 2px;
+    margin: 5px 0;
+    padding: 0 5px;
+}
+
+.delete-project-btn {
+    display: none;
+}
+
+.sidebar-project-container:hover > .delete-project-btn {
+    display: block;
+}
+
+.delete-project-btn:hover {
+    cursor: pointer;
+}

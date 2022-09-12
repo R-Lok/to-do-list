@@ -40,11 +40,12 @@ const createSidebar = (function() {
             if (document.querySelector(`.${projects.list[project].projectName}-sidebar-button`) === null) {
                 const projectNameContainer = document.createElement('div')
                 const projectName = document.createElement('span')
-                projectNameContainer.classList.add(`${projects.list[project].projectName}-sidebar-button`)
+                projectNameContainer.classList.add(`${projects.list[project].projectName}-sidebar-button`, 'sidebar-project-container')
                 const deleteProjectButton = document.createElement('div')
 
                 projectName.innerText = projects.list[project].projectName
                 deleteProjectButton.innerText = 'X'
+                deleteProjectButton.classList.add('delete-project-btn')
                 projectNameContainer.append(projectName, deleteProjectButton)
                 projectContainer.append(projectNameContainer)
             } 
