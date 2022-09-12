@@ -9,9 +9,14 @@ newProjectForm
 const eventListeners = (function() {
     createSidebar.addProjectBtn.addEventListener('click', newProjectForm.showProjectForm)
     newProjectForm.cancelButton.addEventListener('click', newProjectForm.hideProjectForm)
-    newProjectForm.submitButton.addEventListener('click', () => projects.add(newProjectForm.getProjectFormInputValue()))
+    newProjectForm.submitButton.addEventListener('click', addNewProject)
 })()
 
+function addNewProject() {
+    projects.add(newProjectForm.getProjectFormInputValue())
+    createSidebar.renderProjectsToSidebar()
+    console.log(projects.list)
+}
 
 let projects = {
     list: {},
@@ -46,3 +51,4 @@ class toDoItem {
         this.dueDate = dueDate
     }
 }
+ export {projects}

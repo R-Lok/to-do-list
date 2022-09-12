@@ -1,4 +1,5 @@
 import headerImageFile from './receipt.png'
+import {projects} from './index'
 let contentContainer = document.querySelector(".content-container")
 
 const createHeader  = (function(){
@@ -25,13 +26,31 @@ const createSidebar = (function() {
     sidebarOuter.append(sideBarInner)
     contentContainer.append(sidebarOuter)
 
+    const projectContainer = document.createElement('div')
+    projectContainer.classList.add('project-container')
+
     const addProjectBtn  = document.createElement('button')
     addProjectBtn.classList.add('btn')
     addProjectBtn.textContent = 'New Project'
     
-    sideBarInner.append(addProjectBtn)
+    sideBarInner.append(projectContainer, addProjectBtn)
 
-    return {addProjectBtn}
+    function renderProjectsToSidebar() {
+        for (const project in projects.list) {
+            if (document.querySelector(`.${projects.list[project].projectName}-sidebar-button`) === null) {
+                const projectNameContainer = document.createElement('div')
+                const projectName = document.createElement('span')
+                projectNameContainer.classList.add(`${projects.list[project].projectName}-sidebar-button`)
+                const deleteProjectButton = document.createElement('div')
+
+                projectName.innerText = projects.list[project].projectName
+                deleteProjectButton.innerText = 'X'
+                projectNameContainer.append(projectName, deleteProjectButton)
+                projectContainer.append(projectNameContainer)
+            } 
+        }
+    }
+    return {addProjectBtn, renderProjectsToSidebar}
 })()
 
 const newProjectForm = (function() {
