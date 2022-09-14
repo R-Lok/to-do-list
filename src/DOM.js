@@ -1,5 +1,5 @@
 import headerImageFile from './receipt.png'
-import {projects} from './index'
+import {projects, deleteProject} from './index'
 let contentContainer = document.querySelector(".content-container")
 
 const createHeader  = (function(){
@@ -43,6 +43,7 @@ const createSidebar = (function() {
                 projectNameContainer.classList.add('sidebar-project-container')
                 projectNameContainer.setAttribute('project', `${projects.list[project].projectName}`)
                 const deleteProjectButton = document.createElement('div')
+                deleteProjectButton.addEventListener('click', (e) => deleteProject(e.target))
 
                 projectName.innerText = projects.list[project].projectName
                 deleteProjectButton.innerText = 'X'
@@ -52,7 +53,11 @@ const createSidebar = (function() {
             } 
         }
     }
-    return {addProjectBtn, renderProjectsToSidebar}
+
+    function deleteProjectFromSidebar(clickTarget) {
+        clickTarget.parentElement.remove()
+    }
+    return {addProjectBtn, renderProjectsToSidebar, deleteProjectFromSidebar}
 })()
 
 const newProjectForm = (function() {

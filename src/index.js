@@ -18,6 +18,19 @@ function addNewProject() {
     console.log(projects.list)
 }
 
+function confirmDeleteProject() {
+    return confirm('Delete this project? This is an irreversible action.')
+}
+
+function deleteProject(clickTarget) {
+    console.log(clickTarget)
+    if (confirmDeleteProject() === true) {
+        let projectToDelete = clickTarget.parentNode.getAttribute('project')
+        projects.delete(projectToDelete)
+        createSidebar.deleteProjectFromSidebar(clickTarget)
+    }
+}
+
 let projects = {
     list: {},
     add: function(projectName) {
@@ -28,7 +41,7 @@ let projects = {
         }
     },
     delete: function(projectName) {
-        delete project.list[projectName]
+        delete projects.list[projectName]
     }
 }
 
@@ -51,4 +64,4 @@ class toDoItem {
         this.dueDate = dueDate
     }
 }
- export {projects}
+ export {projects, deleteProject}
