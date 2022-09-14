@@ -15,7 +15,6 @@ const eventListeners = (function() {
 function addNewProject() {
     projects.add(newProjectForm.getProjectFormInputValue())
     createSidebar.renderProjectsToSidebar()
-    console.log(projects.list)
 }
 
 function confirmDeleteProject() {
@@ -23,7 +22,6 @@ function confirmDeleteProject() {
 }
 
 function deleteProject(clickTarget) {
-    console.log(clickTarget)
     if (confirmDeleteProject() === true) {
         let projectToDelete = clickTarget.parentNode.getAttribute('project')
         projects.delete(projectToDelete)
