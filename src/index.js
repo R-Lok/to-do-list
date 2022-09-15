@@ -13,9 +13,13 @@ const eventListeners = (function() {
 })()
 
 function addNewProject() {
-    projects.add(newProjectForm.getProjectFormInputValue())
-    createSidebar.renderProjectsToSidebar()
-    newProjectForm.hideProjectForm()
+    if (newProjectForm.getProjectFormInputValue() === "") {
+        alert('Project name cannot be empty!')
+    } else {
+        projects.add(newProjectForm.getProjectFormInputValue())
+        createSidebar.renderProjectsToSidebar()
+        newProjectForm.hideProjectForm()
+    }
 }
 
 function confirmDeleteProject() {
