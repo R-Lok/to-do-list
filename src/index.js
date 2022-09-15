@@ -15,6 +15,7 @@ const eventListeners = (function() {
 function addNewProject() {
     projects.add(newProjectForm.getProjectFormInputValue())
     createSidebar.renderProjectsToSidebar()
+    newProjectForm.hideProjectForm()
 }
 
 function confirmDeleteProject() {
