@@ -1,5 +1,5 @@
 import css from "./style.css"
-import {createHeader, createSidebar, newProjectForm} from "./DOM"
+import {createHeader, createSidebar, newProjectForm, mainContainer} from "./DOM"
 import { add } from "date-fns"
 
 createSidebar

@@ -60,6 +60,24 @@ const createSidebar = (function() {
     return {addProjectBtn, renderProjectsToSidebar, deleteProjectFromSidebar}
 })()
 
+const mainContainer = (function(){
+    const mainContainerOuter = document.createElement('div')
+    mainContainerOuter.classList.add('main-container', 'outer')
+    const mainContainerInner = document.createElement('div')
+    mainContainerInner.classList.add('main-container', 'inner')
+
+    const todoDisplay = document.createElement('div')
+    const newTodoButtonContainer = document.createElement('div')
+    const newTodoButton = document.createElement('button')
+    newTodoButton.setAttribute('type', 'button')
+    newTodoButton.innerText = 'Add To-do'
+
+    newTodoButtonContainer.append(newTodoButton)
+    mainContainerInner.append(todoDisplay, newTodoButtonContainer)
+    mainContainerOuter.append(mainContainerInner)
+    contentContainer.append(mainContainerOuter)
+})()
+
 const newProjectForm = (function() {
     const formContainerOuter = document.createElement('div')
     formContainerOuter.classList.add('form-container-outer')
@@ -113,5 +131,5 @@ const newProjectForm = (function() {
     return {showProjectForm, hideProjectForm, cancelButton, submitButton, getProjectFormInputValue}
 })()
 
-export {createHeader, createSidebar, newProjectForm}
+export {createHeader, createSidebar, newProjectForm, mainContainer}
 

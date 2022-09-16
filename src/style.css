@@ -103,3 +103,12 @@ form {
 .delete-project-btn:hover {
     cursor: pointer;
 }
+
+.main-container.outer {
+    grid-area: main;
+}
+
+.main-container.inner {
+    display: grid;
+    justify-items: center;
+}
