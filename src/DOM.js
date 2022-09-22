@@ -42,6 +42,12 @@ const createSidebar = (function() {
                 const projectName = document.createElement('span')
                 projectNameContainer.classList.add('sidebar-project-container')
                 projectNameContainer.setAttribute('project', `${projects.list[project].projectName}`)
+                projectNameContainer.addEventListener('click', (e) => {
+                    const targetProject = e.target.getAttribute('project')
+                    mainContainer.setAddTodoButtonProject(targetProject)
+                    mainContainer.renderProjectTodos(targetProject)
+                })
+
                 const deleteProjectButton = document.createElement('div')
                 deleteProjectButton.addEventListener('click', (e) => deleteProject(e.target))
 
@@ -79,6 +85,34 @@ const mainContainer = (function(){
     mainContainerInner.append(todoDisplay, newTodoButtonContainer)
     mainContainerOuter.append(mainContainerInner)
     contentContainer.append(mainContainerOuter)
+
+    function setAddTodoButtonProject(projectName) {
+        newTodoButton.setAttribute('currentProject', projectName)
+    }
+    
+    function renderProjectTodos(projectName) {
+        const toDoArray = projects.list[projectName].toDoItems
+        for (let i = 0; i < toDoArray.length; i++) {
+            const toDoContainer = document.createElement('div')
+            const urgencyIndicator = document.createElement('div')
+            const textContainer = document.createElement('div')
+            const checkBoxContainer = document.createElement('div')
+
+            const todoTitle = document.createElement('span')
+            todoTitle.innerText = toDoArray[i].title
+            const todoDueDate = document.createElement('span')
+            todoDueDate.innerText = toDoArray[i].dueDate
+
+            const checkBox = document.createElement('input')
+            checkBox.setAttribute('type', 'checkbox')
+
+            checkBoxContainer.append(checkBox)
+            textContainer.append(todoTitle, todoDueDate)
+            toDoContainer.append(urgencyIndicator, textContainer, checkBoxContainer)
+            todoDisplay.append(toDoContainer)
+        }
+    }
+    return {setAddTodoButtonProject, renderProjectTodos}
 })()
 
 const newProjectForm = (function() {
