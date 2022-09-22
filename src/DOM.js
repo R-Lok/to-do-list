@@ -67,10 +67,13 @@ const mainContainer = (function(){
     mainContainerInner.classList.add('main-container', 'inner')
 
     const todoDisplay = document.createElement('div')
+    todoDisplay.classList.add('todo-display')
     const newTodoButtonContainer = document.createElement('div')
+    newTodoButtonContainer.classList.add('button-container')
     const newTodoButton = document.createElement('button')
     newTodoButton.setAttribute('type', 'button')
     newTodoButton.innerText = 'Add To-do'
+    newTodoButton.setAttribute('currentProject', '')
 
     newTodoButtonContainer.append(newTodoButton)
     mainContainerInner.append(todoDisplay, newTodoButtonContainer)

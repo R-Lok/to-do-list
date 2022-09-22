@@ -112,3 +112,7 @@ form {
     display: grid;
     justify-items: center;
 }
+
+[currentProject = ''] {
+    display: none;
+}
