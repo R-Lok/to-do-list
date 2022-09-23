@@ -61,6 +61,7 @@ function addNewToDo() {
     } else {
         currentProjectLocation.addToDoItem(input.title, input.description, input.dueDate)
         newToDoForm.clearInputsAndHideForm()
+        mainContainer.renderProjectTodos(currentProject)
     }
 }
 

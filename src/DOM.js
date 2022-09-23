@@ -90,8 +90,16 @@ const mainContainer = (function(){
         newTodoButton.setAttribute('currentProject', projectName)
     }
     
+    function removeAllChildElements() {
+        while (todoDisplay.hasChildNodes()) {
+            todoDisplay.removeChild(todoDisplay.lastChild)
+        }
+    }
+    
     function renderProjectTodos(projectName) {
         const toDoArray = projects.list[projectName].toDoItems
+        removeAllChildElements()
+        
         for (let i = 0; i < toDoArray.length; i++) {
             const toDoContainer = document.createElement('div')
             const urgencyIndicator = document.createElement('div')
