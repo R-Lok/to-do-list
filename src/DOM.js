@@ -112,7 +112,7 @@ const mainContainer = (function(){
             todoDisplay.append(toDoContainer)
         }
     }
-    return {setAddTodoButtonProject, renderProjectTodos}
+    return {setAddTodoButtonProject, renderProjectTodos, newTodoButton}
 })()
 
 const newProjectForm = (function() {
@@ -168,5 +168,79 @@ const newProjectForm = (function() {
     return {showProjectForm, hideProjectForm, cancelButton, submitButton, getProjectFormInputValue}
 })()
 
-export {createHeader, createSidebar, newProjectForm, mainContainer}
+const newToDoForm = (function() {
+    const formContainerOuter = document.createElement('div')
+    formContainerOuter.classList.add('form-container-outer')
+    const formContainerInner = document.createElement('div')
+    formContainerInner.classList.add('form-container-inner')
+
+    const toDoForm = document.createElement('form')
+
+    const titleLabel = document.createElement('label')
+    titleLabel.innerText = 'Title'
+    titleLabel.setAttribute('for', 'to-do-title')
+    const titleInput = document.createElement('input')
+    titleInput.required = true
+    titleInput.setAttribute('type', 'text')
+    titleInput.id = 'to-do-title'
+
+    const descriptionLabel = document.createElement('label')
+    descriptionLabel.innerText = 'Description'
+    descriptionLabel.setAttribute('for', 'to-do-description')
+    const descriptionInput = document.createElement('textarea')
+    descriptionInput.id = 'to-do-description'
+
+    const dueDateLabel = document.createElement('label')
+    dueDateLabel.innerText = 'Due date'
+    dueDateLabel.setAttribute('for', 'to-do-due-date')
+    const dueDateInput = document.createElement('input')
+    dueDateInput.setAttribute('type', 'date')
+    dueDateInput.id = 'to-do-due-date'
+
+    const buttonContainer = document.createElement('div')
+    buttonContainer.classList.add('button-container')
+
+    const submitButton = document.createElement('button')
+    submitButton.innerText = 'Submit'
+    submitButton.setAttribute('type', 'button')
+    submitButton.classList.add('form-button')
+
+    const cancelButton = document.createElement('button')
+    cancelButton.innerText = 'Cancel'
+    cancelButton.setAttribute('type', 'button')
+    cancelButton.classList.add('form-button')
+
+    buttonContainer.append(submitButton, cancelButton)
+    toDoForm.append(titleLabel, titleInput, descriptionLabel, descriptionInput, dueDateLabel, dueDateInput, buttonContainer)
+    formContainerInner.append(toDoForm)
+    formContainerOuter.append(formContainerInner)
+    contentContainer.append(formContainerOuter)
+
+    function showToDoForm() {
+        formContainerOuter.style.display = 'flex'
+    }
+
+    function hideToDoForm() {
+        formContainerOuter.style.display = 'none'
+    }
+
+    function clearInputsAndHideForm() {
+        titleInput.value = ""
+        descriptionInput.value = ""
+        dueDateInput.value = ""
+        hideToDoForm()
+    }
+
+    function getFormValues() {
+        const title = titleInput.value
+        const description = descriptionInput.value
+        const dueDate = dueDateInput.value
+
+        return {title, description, dueDate}
+    }
+
+    return {showToDoForm, hideToDoForm, cancelButton, submitButton, clearInputsAndHideForm, getFormValues}
+})()
+
+export {createHeader, createSidebar, newProjectForm, mainContainer, newToDoForm}
 

@@ -1,5 +1,5 @@
 import css from "./style.css"
-import {createHeader, createSidebar, newProjectForm, mainContainer} from "./DOM"
+import {createHeader, createSidebar, newProjectForm, mainContainer, newToDoForm} from "./DOM"
 import { add } from "date-fns"
 
 createSidebar
@@ -10,6 +10,9 @@ const eventListeners = (function() {
     createSidebar.addProjectBtn.addEventListener('click', newProjectForm.showProjectForm)
     newProjectForm.cancelButton.addEventListener('click', newProjectForm.hideProjectForm)
     newProjectForm.submitButton.addEventListener('click', addNewProject)
+    mainContainer.newTodoButton.addEventListener('click', newToDoForm.showToDoForm)
+    newToDoForm.cancelButton.addEventListener('click', newToDoForm.clearInputsAndHideForm)
+    newToDoForm.submitButton.addEventListener('click', addNewToDo)
 })()
 
 function addNewProject() {
@@ -48,7 +51,18 @@ let projects = {
     }
 }
 
+function addNewToDo() {
+    let input = newToDoForm.getFormValues()
+    let currentProject = mainContainer.newTodoButton.getAttribute('currentproject')
+    let currentProjectLocation = projects.list[currentProject]
 
+    if (input.title === '') {
+        alert('Please enter a title for the to-do.')
+    } else {
+        currentProjectLocation.addToDoItem(input.title, input.description, input.dueDate)
+        newToDoForm.clearInputsAndHideForm()
+    }
+}
 
 class project {
     constructor(projectName) {

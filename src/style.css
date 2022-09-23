@@ -64,7 +64,8 @@ button:hover {
 
 .form-container-inner {
     border: 2px solid black;
-    width: 30vw;
+    width: fit-content;
+    min-width: 30vw;
     padding: 20px;
 }
 
