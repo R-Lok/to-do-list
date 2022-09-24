@@ -15,6 +15,15 @@ const eventListeners = (function() {
     newToDoForm.submitButton.addEventListener('click', addNewToDo)
 })()
 
+function saveProjectsToLocalStorage() {
+    localStorage.setItem('projectslist', JSON.stringify(projects.list))
+}
+
+function getProjectsFromLocalStorage() {
+    if (localStorage.getItem('projectslist') !== null)
+    projects.list = JSON.parse(localStorage.getItem('projectslist'))
+}
+
 function addNewProject() {
     if (newProjectForm.getProjectFormInputValue() === "") {
         alert('Project name cannot be empty!')
@@ -22,6 +31,7 @@ function addNewProject() {
         projects.add(newProjectForm.getProjectFormInputValue())
         createSidebar.renderProjectsToSidebar()
         newProjectForm.hideProjectForm()
+        saveProjectsToLocalStorage()
     }
 }
 
@@ -34,6 +44,7 @@ function deleteProject(clickTarget) {
         let projectToDelete = clickTarget.parentNode.getAttribute('project')
         projects.delete(projectToDelete)
         createSidebar.deleteProjectFromSidebar(clickTarget)
+        saveProjectsToLocalStorage()
     }
 }
 
@@ -62,6 +73,7 @@ function addNewToDo() {
         currentProjectLocation.addToDoItem(input.title, input.description, input.dueDate)
         newToDoForm.clearInputsAndHideForm()
         mainContainer.renderProjectTodos(currentProject)
+        saveProjectsToLocalStorage()
     }
 }
 
@@ -82,4 +94,10 @@ class toDoItem {
         this.dueDate = dueDate
     }
 }
+
+getProjectsFromLocalStorage()
+createSidebar.renderProjectsToSidebar()
+console.log(projects)
+console.log(JSON.parse(localStorage.getItem('projectslist')))
+
  export {projects, deleteProject}
