@@ -42,8 +42,8 @@ const createSidebar = (function() {
                 const projectName = document.createElement('span')
                 projectNameContainer.classList.add('sidebar-project-container')
                 projectNameContainer.setAttribute('project', `${projects.list[project].projectName}`)
-                projectNameContainer.addEventListener('click', (e) => {
-                    const targetProject = e.target.getAttribute('project')
+                projectName.addEventListener('click', (e) => {
+                    const targetProject = e.target.parentNode.getAttribute('project')
                     mainContainer.setAddTodoButtonProject(targetProject)
                     mainContainer.renderProjectTodos(targetProject)
                 })

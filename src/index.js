@@ -98,6 +98,6 @@ class toDoItem {
 getProjectsFromLocalStorage()
 createSidebar.renderProjectsToSidebar()
 console.log(projects)
-console.log(JSON.parse(localStorage.getItem('projectslist')))
+
 
  export {projects, deleteProject}
