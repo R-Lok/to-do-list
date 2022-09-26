@@ -59,6 +59,9 @@ let projects = {
     },
     delete: function(projectName) {
         delete projects.list[projectName]
+    },
+    addToDoItem: function(project, title, description, dueDate) {
+        project.toDoItems.push(new toDoItem(title, description, dueDate))
     }
 }
 
@@ -70,7 +73,8 @@ function addNewToDo() {
     if (input.title === '') {
         alert('Please enter a title for the to-do.')
     } else {
-        currentProjectLocation.addToDoItem(input.title, input.description, input.dueDate)
+        console.log(currentProjectLocation)
+        projects.addToDoItem(currentProjectLocation, input.title, input.description, input.dueDate)
         newToDoForm.clearInputsAndHideForm()
         mainContainer.renderProjectTodos(currentProject)
         saveProjectsToLocalStorage()
@@ -81,9 +85,6 @@ class project {
     constructor(projectName) {
         this.projectName = projectName
         this.toDoItems = []
-    }
-    addToDoItem(title, description, dueDate) {
-        this.toDoItems.push(new toDoItem(title, description, dueDate))
     }
 }
 
@@ -98,6 +99,6 @@ class toDoItem {
 getProjectsFromLocalStorage()
 createSidebar.renderProjectsToSidebar()
 console.log(projects)
-
+console.log(localStorage.getItem('projectslist'))
 
  export {projects, deleteProject}
