@@ -102,9 +102,13 @@ const mainContainer = (function(){
         
         for (let i = 0; i < toDoArray.length; i++) {
             const toDoContainer = document.createElement('div')
+            toDoContainer.classList.add('to-do-container')
             const urgencyIndicator = document.createElement('div')
+            urgencyIndicator.classList.add('urgency-indicator')
             const textContainer = document.createElement('div')
+            textContainer.classList.add('text-container')
             const checkBoxContainer = document.createElement('div')
+            checkBoxContainer.classList.add('checkbox-container')
 
             const todoTitle = document.createElement('span')
             todoTitle.innerText = toDoArray[i].title

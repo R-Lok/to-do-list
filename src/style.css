@@ -122,3 +122,32 @@ form {
     display: none;
 }
 
+.todo-display {
+    padding: 5vw;
+}
+
+.to-do-container {
+    border: 1px solid black;
+    border-radius: 3px;
+    display: grid;
+    grid-template-columns: 20px 1fr min-content;
+    height: 35px;
+    align-content: center;
+    width: 50vw;
+}
+
+.to-do-container > div {
+    display: flex;
+    width: fit-content;
+    justify-content: space-between;
+}
+
+.to-do-container > .text-container {
+    width: 100%;
+}
+
+.checkbox-container {
+    padding: 0 5px;
+}
+
+
