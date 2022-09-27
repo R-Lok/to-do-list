@@ -37,7 +37,7 @@ const createSidebar = (function() {
 
     function renderProjectsToSidebar() {
         for (const project in projects.list) {
-            if (document.querySelector(`[project=${projects.list[project].projectName}]`) === null) {
+            if (document.querySelector(`[project="${projects.list[project].projectName}"]`) === null) {
                 const projectNameContainer = document.createElement('div')
                 const projectName = document.createElement('span')
                 projectNameContainer.classList.add('sidebar-project-container')
