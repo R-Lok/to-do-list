@@ -131,6 +131,7 @@ form {
     border-radius: 3px;
     display: grid;
     grid-template-columns: 20px 1fr min-content;
+    grid-template-rows: 1fr;
     height: 35px;
     align-content: center;
     width: 50vw;
@@ -144,10 +145,47 @@ form {
 
 .to-do-container > .text-container {
     width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .checkbox-container {
     padding: 0 5px;
 }
 
+.to-do-container > .urgency-indicator {
+    width: 15px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
 
+[priority='Urgent'] {
+    background: red;
+}
+
+[priority='Urgent']::after {
+    content: "U";
+    display: flex;
+    align-items: center;
+}
+
+[priority='Normal'] {
+    background: rgb(209, 209, 0);
+}
+
+[priority='Normal']::after {
+    content: "N";
+    display: flex;
+    align-items: center;
+}
+
+[priority='Low'] {
+    background: green;
+}
+
+[priority='Low']::after {
+    content: "L";
+    display: flex;
+    align-items: center;
+}

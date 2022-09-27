@@ -105,6 +105,7 @@ const mainContainer = (function(){
             toDoContainer.classList.add('to-do-container')
             const urgencyIndicator = document.createElement('div')
             urgencyIndicator.classList.add('urgency-indicator')
+            urgencyIndicator.setAttribute('priority', toDoArray[i].priority)
             const textContainer = document.createElement('div')
             textContainer.classList.add('text-container')
             const checkBoxContainer = document.createElement('div')
