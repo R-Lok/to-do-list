@@ -22,6 +22,16 @@ function saveProjectsToLocalStorage() {
 function getProjectsFromLocalStorage() {
     if (localStorage.getItem('projectslist') !== null)
     projects.list = JSON.parse(localStorage.getItem('projectslist'))
+    retrieveCurrentToDoId()
+}
+
+function saveCurrentToDoId() {
+    localStorage.setItem('currentToDoId', JSON.stringify(projects.currentToDoId))
+}
+
+function retrieveCurrentToDoId() {
+    let savedCurrentToDoId = JSON.parse(localStorage.getItem('currentToDoId'))
+    projects.currentToDoId = savedCurrentToDoId
 }
 
 function addNewProject() {
@@ -50,6 +60,7 @@ function deleteProject(clickTarget) {
 
 let projects = {
     list: {},
+    currentToDoId: 0,
     add: function(projectName) {
         if (projects.list[projectName] === undefined) {
             projects.list[projectName]= new project(projectName)
@@ -78,6 +89,7 @@ function addNewToDo() {
         newToDoForm.clearInputsAndHideForm()
         mainContainer.renderProjectTodos(currentProject)
         saveProjectsToLocalStorage()
+        saveCurrentToDoId()
     }
 }
 
@@ -94,6 +106,7 @@ class toDoItem {
         this.description = description
         this.dueDate = dueDate
         this.priority = priority
+        this.toDoId = projects.currentToDoId++
     }
 }
 
