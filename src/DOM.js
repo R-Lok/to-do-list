@@ -209,6 +209,23 @@ const newToDoForm = (function() {
     dueDateInput.setAttribute('type', 'date')
     dueDateInput.id = 'to-do-due-date'
 
+    const priorityLabel = document.createElement('div')
+    priorityLabel.innerText = 'Priority'
+    priorityLabel.setAttribute('for', 'priority')
+    const priorityInput = document.createElement('select')
+
+    const highPriority = document.createElement('option')
+    highPriority.setAttribute('value', 'Urgent')
+    highPriority.textContent = 'Urgent'
+    const normalPriority = document.createElement('option')
+    normalPriority.setAttribute('value', 'Normal')
+    normalPriority.textContent = 'Normal'
+    const lowPriority = document.createElement('option')
+    lowPriority.setAttribute('value', 'Low')
+    lowPriority.textContent = 'Low'
+
+    priorityInput.append(highPriority, normalPriority, lowPriority)
+
     const buttonContainer = document.createElement('div')
     buttonContainer.classList.add('button-container')
 
@@ -223,7 +240,7 @@ const newToDoForm = (function() {
     cancelButton.classList.add('form-button')
 
     buttonContainer.append(submitButton, cancelButton)
-    toDoForm.append(titleLabel, titleInput, descriptionLabel, descriptionInput, dueDateLabel, dueDateInput, buttonContainer)
+    toDoForm.append(titleLabel, titleInput, descriptionLabel, descriptionInput, dueDateLabel, dueDateInput, priorityLabel, priorityInput,  buttonContainer)
     formContainerInner.append(toDoForm)
     formContainerOuter.append(formContainerInner)
     contentContainer.append(formContainerOuter)
@@ -247,8 +264,9 @@ const newToDoForm = (function() {
         const title = titleInput.value
         const description = descriptionInput.value
         const dueDate = dueDateInput.value
+        const priority = priorityInput.value
 
-        return {title, description, dueDate}
+        return {title, description, dueDate, priority}
     }
 
     return {showToDoForm, hideToDoForm, cancelButton, submitButton, clearInputsAndHideForm, getFormValues}

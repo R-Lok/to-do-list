@@ -60,8 +60,8 @@ let projects = {
     delete: function(projectName) {
         delete projects.list[projectName]
     },
-    addToDoItem: function(project, title, description, dueDate) {
-        project.toDoItems.push(new toDoItem(title, description, dueDate))
+    addToDoItem: function(project, title, description, dueDate, priority) {
+        project.toDoItems.push(new toDoItem(title, description, dueDate, priority))
     }
 }
 
@@ -74,7 +74,7 @@ function addNewToDo() {
         alert('Please enter a title for the to-do.')
     } else {
         console.log(currentProjectLocation)
-        projects.addToDoItem(currentProjectLocation, input.title, input.description, input.dueDate)
+        projects.addToDoItem(currentProjectLocation, input.title, input.description, input.dueDate, input.priority)
         newToDoForm.clearInputsAndHideForm()
         mainContainer.renderProjectTodos(currentProject)
         saveProjectsToLocalStorage()
@@ -89,10 +89,11 @@ class project {
 }
 
 class toDoItem {
-    constructor(title, description, dueDate) {
+    constructor(title, description, dueDate, priority) {
         this.title = title
         this.description = description
         this.dueDate = dueDate
+        this.priority = priority
     }
 }
 
