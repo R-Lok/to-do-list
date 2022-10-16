@@ -58,6 +58,12 @@ function deleteProject(clickTarget) {
     }
 }
 
+function deleteAndRerenderToDoList(event) {
+    let currentProject = mainContainer.newTodoButton.getAttribute('currentproject')
+    projects.deleteToDoItem(event)
+    mainContainer.renderProjectTodos(currentProject)
+}
+
 let projects = {
     list: {},
     currentToDoId: 0,
@@ -73,6 +79,14 @@ let projects = {
     },
     addToDoItem: function(project, title, description, dueDate, priority) {
         project.toDoItems.push(new toDoItem(title, description, dueDate, priority))
+    },
+    deleteToDoItem: function(event) {
+        const toDoInformation = mainContainer.getToDoInformation(event)
+        const project = projects.list[toDoInformation.currentProject]
+        const toDoId = toDoInformation.toDoId
+        let targetToDeleteIndex = project.toDoItems.findIndex(element => element.toDoId === toDoId)
+        project.toDoItems.splice(targetToDeleteIndex, 1)
+        console.log(project.toDoItems)
     }
 }
 
@@ -115,4 +129,4 @@ createSidebar.renderProjectsToSidebar()
 console.log(projects)
 console.log(localStorage.getItem('projectslist'))
 
- export {projects, deleteProject}
+ export {projects, deleteProject, deleteAndRerenderToDoList}

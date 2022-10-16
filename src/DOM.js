@@ -1,5 +1,5 @@
 import headerImageFile from './receipt.png'
-import {projects, deleteProject} from './index'
+import {projects, deleteProject, deleteAndRerenderToDoList} from './index'
 let contentContainer = document.querySelector(".content-container")
 
 const createHeader  = (function(){
@@ -103,6 +103,7 @@ const mainContainer = (function(){
         for (let i = 0; i < toDoArray.length; i++) {
             const toDoContainer = document.createElement('div')
             toDoContainer.classList.add('to-do-container')
+            toDoContainer.setAttribute('to-do-id', toDoArray[i].toDoId)
             const urgencyIndicator = document.createElement('div')
             urgencyIndicator.classList.add('urgency-indicator')
             urgencyIndicator.setAttribute('priority', toDoArray[i].priority)
@@ -118,6 +119,7 @@ const mainContainer = (function(){
 
             const checkBox = document.createElement('input')
             checkBox.setAttribute('type', 'checkbox')
+            checkBox.addEventListener('change', (event) => deleteAndRerenderToDoList(event))
 
             checkBoxContainer.append(checkBox)
             textContainer.append(todoTitle, todoDueDate)
@@ -125,7 +127,15 @@ const mainContainer = (function(){
             todoDisplay.append(toDoContainer)
         }
     }
-    return {setAddTodoButtonProject, renderProjectTodos, newTodoButton}
+
+    function getToDoInformation(event) {
+        const toDoContainer = event.target.parentElement.parentElement
+        const toDoId = toDoContainer.getAttribute('to-do-id')
+        const currentProject = newTodoButton.getAttribute('currentproject')
+        return {currentProject, toDoId}
+    }
+
+    return {setAddTodoButtonProject, renderProjectTodos, newTodoButton, getToDoInformation}
 })()
 
 const newProjectForm = (function() {
