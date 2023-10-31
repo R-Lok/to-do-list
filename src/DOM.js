@@ -115,7 +115,7 @@ const mainContainer = (function(){
             const todoTitle = document.createElement('span')
             todoTitle.innerText = toDoArray[i].title
             const todoDueDate = document.createElement('span')
-            todoDueDate.innerText = toDoArray[i].dueDate
+            todoDueDate.innerText = `Due date: ${toDoArray[i].dueDate}`
 
             const checkBox = document.createElement('input')
             checkBox.setAttribute('type', 'checkbox')
